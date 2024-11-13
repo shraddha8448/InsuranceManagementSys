@@ -21,6 +21,10 @@ public class AgentController {
         return agentServiceObj.addNewAgent(agentDTO);
     }
 
+    @GetMapping("/")
+    public String getAllAgent(){
+        return "Welcome in agent controller";
+    }
     @GetMapping("/get all")
     public List<Agent> getAllAgent(){
         return agentServiceObj.getAllAgents();
