@@ -11,7 +11,7 @@ stages {
         stage('Build') {
             steps {
                 // Clean and build the project using Maven
-                sh 'mvn clean package -DskipTests'
+                sh 'ssh ubuntu@13.48.43.105  "cd app && mvn clean package -DskipTests"'
             }
         }
 
@@ -20,7 +20,7 @@ stages {
             steps {
                 script {
                     // Copy the built jar file to the remote EC2 instance
-                    sh 'java -jar InsuranceManagementSystem-0.0.1-SNAPSHOT.jar'
+                    sh 'ssh ubuntu@13.48.43.105  "cd app && java -jar target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar'
                 }
             }
         }
