@@ -13,17 +13,20 @@ pipeline {
                  sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46  "cd app && mvn clean package -DskipTests"'
             }
         }
-        stage('copy'){
-            steps{
-                script{
-                 sh """
-                    scp -o StrictHostKeyChecking=no $WORKSPACE/target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar ubuntu@13.61.105.46:/home/ubuntu/app/target/
-                  """
-                }
-                
-    
+        stage('copy') {
+    steps {
+        script {
+            def jarFile = "$WORKSPACE/target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar"
+            if (fileExists(jarFile)) {
+                sh """
+                    scp -o StrictHostKeyChecking=no $jarFile ubuntu@13.61.105.46:/home/ubuntu/app/target/
+                """
+            } else {
+                error "JAR file not found: ${jarFile}"
             }
         }
+    }
+}
         
         stage('restart'){
             steps{
