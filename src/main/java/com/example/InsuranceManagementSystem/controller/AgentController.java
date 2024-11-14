@@ -23,7 +23,7 @@ public class AgentController {
 
     @GetMapping("/")
     public String getAgent(){
-        return "Welcome in agent controller";
+        return "Welcome agent";
     }
     @GetMapping("/get all")
     public List<Agent> getAllAgent(){
