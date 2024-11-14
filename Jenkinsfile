@@ -25,5 +25,12 @@ stages {
             }
         }
     }
-
+    post {
+    success {
+        echo 'Deployment succeeded!'
+    }
+    failure {
+        echo 'Deployment failed!'
+    }
+}
 }
