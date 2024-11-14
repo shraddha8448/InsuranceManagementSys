@@ -17,16 +17,7 @@ stages {
     stage('Deploy') {
             steps {
                 script {
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46 "cd app && nohup java -jar target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar > app.log 2>&1 &"'
-                    sleep 10 // wait for application to start
-                }
-            }
-        }
-        
-        stage('Health Check') {
-            steps {
-                script {
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46 "curl -sSf http://localhost:8082 || exit 1"'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46  "cd app && java -jar target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar"'
                 }
             }
         }
