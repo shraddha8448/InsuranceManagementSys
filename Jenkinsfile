@@ -11,7 +11,7 @@ stages {
         stage('Build') {
             steps {
                 // Clean and build the project using Maven
-                sh 'ssh ubuntu@13.61.105.46  "cd app && mvn clean package -DskipTests"'
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46  "cd app && mvn clean package -DskipTests"'
             }
         }
 
