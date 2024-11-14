@@ -51,9 +51,6 @@
             steps{
                 script{
                  sh """
-                    // Remove old JAR
-                    sh 'rm -rf /home/ubuntu/app/target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar'
-                    // Copy the new JAR
                     scp -o StrictHostKeyChecking=no $WORKSPACE/target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar ubuntu@13.61.105.46:/home/ubuntu/app/target/
                   """
                 }
