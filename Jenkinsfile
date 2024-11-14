@@ -1,16 +1,17 @@
 pipeline {
     agent any
-
-    stages {
-        stage('git pull') {
+stages {
+        stage('Checkout') {
             steps {
-              git url: 'https://github.com/shraddha8448/InsuranceManagementSys.git', branch: 'master'
+                // Check out the code from the Git repository
+                git url: 'https://github.com/shraddha8448/InsuranceManagementSys.git', branch: 'master'
             }
         }
-        stage('mvn-clean'){
-            steps{
+
+        stage('Build') {
+            steps {
                 // Clean and build the project using Maven
-                 sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46  "cd app && mvn clean package -DskipTests"'
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46  "cd app && mvn clean package -DskipTests"'
             }
         }
 
@@ -22,31 +23,13 @@ pipeline {
                 }
             }
         }
-        
-        stage('restart'){
-            steps{
-             
-            script{
-                 sh """ssh ubuntu@13.61.105.46 'sudo systemctl restart spring.service' """
-                  }
-            }
-        }
-        
-        stage('status'){
-            steps{
-                script{
-                      sh """ssh ubuntu@13.61.105.46 'sudo systemctl status spring.service' """
-                }
-            }
-        }
     }
-        post {
-        success {
-            echo 'Deployment succeeded!'
-        }
-        failure {
-            echo 'Deployment failed!'
-
-    }    
+    post {
+    success {
+        echo 'Deployment succeeded!'
+    }
+    failure {
+        echo 'Deployment failed!'
+    }
 }
 }
