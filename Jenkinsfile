@@ -51,6 +51,9 @@
             steps{
                 script{
                  sh """
+                    // Remove old JAR
+                    sh 'rm -rf /home/ubuntu/app/target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar'
+                    // Copy the new JAR
                     scp -o StrictHostKeyChecking=no $WORKSPACE/target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar ubuntu@13.61.105.46:/home/ubuntu/app/target/
                   """
                 }
@@ -62,7 +65,7 @@
             steps{
              
             script{
-                 sh """ssh ubuntu@13.61.105.46 'sudo systemctl restart spring.service' """
+                 sh """ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46 'sudo systemctl restart spring.service' """
                   }
         }
         }
@@ -70,7 +73,7 @@
         stage('status'){
             steps{
                 script{
-                      sh """ssh ubuntu@13.61.105.46 'sudo systemctl status spring.service' """
+                      sh """ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46 'sudo systemctl status spring.service' """
                 }
             }
         }
