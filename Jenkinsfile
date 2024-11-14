@@ -20,7 +20,7 @@ stages {
             steps {
                 script {
                     // Copy the built jar file to the remote EC2 instance
-                    sh 'ssh ubuntu@51.20.56.66  "cd target/ && java -jar InsuranceManagementSystem-0.0.1-SNAPSHOT.jar"'
+                    sh 'ssh ubuntu@51.20.56.66  "cd app/ && java -jar target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar"'
                 }
             }
         }
