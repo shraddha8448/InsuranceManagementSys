@@ -41,7 +41,7 @@ pipeline {
     stages {
         stage('git pull') {
             steps {
-              git branch: 'master', url: 'https://github.com/shraddha8448/InsuranceManagementSys.git'
+              git url: 'https://github.com/shraddha8448/InsuranceManagementSys.git', branch: 'master'
             }
         }
         stage('mvn-clean'){
