@@ -19,7 +19,7 @@ stages {
             steps {
                 script {
                     // Copy the built jar file to the remote EC2 instance
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46 "cd app && nohup java -jar target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar > app.log 2>&1 &"'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.61.105.46 "cd app && nohup java -jar target/InsuranceManagementSystem-0.0.1-SNAPSHOT.jar &"'
                 }
             }
         }
