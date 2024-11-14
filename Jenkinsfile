@@ -24,6 +24,7 @@ pipeline {
     
             }
         }
+        
         stage('restart'){
             steps{
              
@@ -40,6 +41,7 @@ pipeline {
                 }
             }
         }
+    }
         post {
         success {
             echo 'Deployment succeeded!'
